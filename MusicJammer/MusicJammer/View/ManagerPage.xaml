@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:view="clr-namespace:MusicJammer.View"
+             xmlns:effect="clr-namespace:MusicJammer.Data.Effects"
+             x:Class="MusicJammer.View.ManagerPage"
+             NavigationPage.HasBackButton="False"
+             Title="Tab Manager"
+             ControlTemplate="{StaticResource MainPageTemplate}"
+             x:Name="TabManagerPage"
+             >
+    <StackLayout>
+
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Grid Margin="15,0" >
+                
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                
+                <Entry x:Name="NameTabEntry" Grid.Column="0" />
+                <Button x:Name="AddTabButton" Grid.Column="1" Text="Add new tab" Clicked="AddTabButton_Clicked" />
+            </Grid>
+
+            <ListView x:Name="TabListView" ItemsSource="{Binding TabVM.TabItems}" SelectionMode="None" SeparatorVisibility="Default" HasUnevenRows="True">
+                <ListView.Header>
+                    <StackLayout>
+                        <Label Text="Tabs:"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout x:Name="TabItemLayout" >
+                                <StackLayout x:Name="TabItem"  Margin="10" Padding="5"  HeightRequest="60">
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}" />
+                                    </StackLayout>
+                                    <Grid >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Grid.Column="0" Text="Move up" 
+                                                BindingContext="{Binding Source={x:Reference TabListView}, Path=BindingContext}" Command="{Binding TabVM.MoveUpCommand}" CommandParameter="{Binding Source={x:Reference TabItemLayout}, Path=BindingContext}"
+                                                />
+                                        
+                                        <Button Grid.Column="1" Text="Move down" 
+                                                BindingContext="{Binding Source={x:Reference TabListView}, Path=BindingContext}" Command="{Binding TabVM.MoveDownCommand}" CommandParameter="{Binding Source={x:Reference TabItemLayout}, Path=BindingContext}"
+                                                />
+                                        
+                                        <Button Grid.Column="2" Text="Remove" 
+                                                BindingContext="{Binding Source={x:Reference TabListView}, Path=BindingContext}" Command="{Binding TabVM.RemoveCommand}" CommandParameter="{Binding Source={x:Reference TabItemLayout}, Path=BindingContext}"
+                                                />
+                                        <!--
+                                        <Button Text="Save sound to my sounds"
+                                                        BindingContext="{Binding Source={x:Reference SoundListView}, Path=BindingContext}" 
+                                                        Command="{Binding Smuggle.OpenLinkCommand}" 
+                                                        CommandParameter="{Binding Source={x:Reference SoundItem}, Path=BindingContext}"
+                                                        />
+                                        -->
+                                    </Grid>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+        <StackLayout HorizontalOptions="Fill" Orientation="Horizontal" VerticalOptions="End" Padding="0" >
+            <view:NavLayout></view:NavLayout>
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:data="clr-namespace:MusicJammer.Data"
+             xmlns:local="clr-namespace:MusicJammer" 
+             xmlns:view="clr-namespace:MusicJammer.View"
+             NavigationPage.HasNavigationBar="True"
+             x:Class="MusicJammer.App">
+
+    <Application.Resources>
+        <!--https://www.xamarinhelp.com/xamarin-forms-page-templates/-->
+        <ResourceDictionary>
+            <Style x:Key="defultButton" TargetType="Button">
+                
+            </Style>
+            <Style x:Key="defultCollectionView" TargetType="CollectionView">
+                
+            </Style>
+            <ControlTemplate x:Key="MainPageTemplate">
+                <Frame Padding="0">
+                    <Frame.Background>
+                        <LinearGradientBrush    StartPoint="0,0" EndPoint="0,1">
+                            <!--<GradientStop x:Name="gs" Color="{Binding PageStyle.MainColor.Hex}" Offset="0.1" />-->
+                            <GradientStop x:Name="gradientStopTop" Offset="0.1" />
+                            <GradientStop x:Name="gradientStopDown" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                        <ContentPresenter />
+
+                    </StackLayout>
+                </Frame>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicJammer.View.OAuth2Page">
+    <ContentPage.Content>
+        <StackLayout x:Name="OAuth2StackLayout">
+            <Label Text="To authenticate to Freesound.org, remember to save your token from the website and insert it into the input field."
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="TokenEntry" Placeholder="Web Token" IsVisible="false" IsEnabled="False" />
+            <Button x:Name="InsertedTokenAuthenticationButton" Text="Validate token" Clicked="InsertedTokenAuthenticationButton_Clicked" IsVisible="false" IsEnabled="False"/>
+            <Button x:Name="ProceedAuthenticationButton" Text="get my token" Clicked="ProceedAuthenticationButton_Clicked"/>
+            <Button x:Name="CancelAuthenticationButton" Text="Cancel authentication"  Clicked="CancelAuthenticationButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

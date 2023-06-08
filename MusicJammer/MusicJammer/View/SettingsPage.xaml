@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:view="clr-namespace:MusicJammer.View"
+             x:Class="MusicJammer.View.SettingsPage"
+             NavigationPage.HasBackButton="False"
+             Title="Settings"
+             ControlTemplate="{StaticResource MainPageTemplate}"
+             >
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout >
+
+            <StackLayout>
+
+
+
+                <StackLayout x:Name="LogoStackLayout" HeightRequest="130" Padding="0">
+                    <!--<Image x:Name="LogoImage" Source="CloudyLogo.png" HeightRequest="150"/>-->
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" VerticalTextAlignment="Center" Padding="0,20,0,0" FontSize="40" x:Name="LogoTopLabel" Text="Music" FontFamily="Lobster" TextColor="{Binding Settings.TitleColor.Color}"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" VerticalTextAlignment="Center" FontSize="40" x:Name="LogoDownLabel" Text="Jam" Margin="0,-15,0,0" TextColor="{Binding Settings.TitleColor.Color}" />
+                </StackLayout>
+
+                <TableView x:Name="SettingsTableView">
+                    <TableView.Root>
+
+                    </TableView.Root>
+                </TableView>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Fill" Orientation="Horizontal" VerticalOptions="End" Padding="0" >
+                <view:NavLayout></view:NavLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    
+<!--#region Op configs-->
+    <!--
+                        <TableSection Title="Config">
+
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="Remove my data[not done]" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center" Margin="15,0,0,0" />
+                                        <Button x:Name="RemoveAllDataButton" Grid.Column="1" Text="Remove" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="Test dark theme" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center" Margin="15,0,0,0" />
+                                        <Button x:Name="TestStyleButton" Grid.Column="1" Text="Uppdate" Clicked="TestStyleButton_Clicked" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="Test white theme" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center" Margin="15,0,0,0" />
+                                        <Button x:Name="TestStyleDarkButton" Grid.Column="1" Text="Uppdate" Clicked="TestStyleDarkButton_Clicked" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="Save tabs" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center" Margin="15,0,0,0" />
+                                        <Button x:Name="TestSaveTabsButton" Grid.Column="1" Text="Save tabs" Clicked="TestSaveTabsButton_Clicked" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="Load tabs" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center" Margin="15,0,0,0" />
+                                        <Button x:Name="TestLoadTabsButton" Grid.Column="1" Text="Load tabs" Clicked="TestLoadTabsButton_Clicked" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="Remove all tabs" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center" Margin="15,0,0,0" />
+                                        <Button x:Name="TestDeleteAllTabsButton" Grid.Column="1" Text="Remove all existing tabs" Clicked="TestDeleteAllTabsButton_Clicked" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="Remove and create new sounds in tabs" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center" Margin="15,0,0,0" />
+                                        <Button x:Name="DebugSoundsInTabsButton" Grid.Column="1" Text="Update" Clicked="DebugSoundsInTabsButton_Clicked" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                            
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="4*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout Grid.Column="0" Margin="15,0,0,0" BackgroundColor="{Binding Settings.TextColor.Color}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30"  >
+                                            <StackLayout Margin="1,1,1,1" BackgroundColor="{Binding Settings.MainColor.Color}" HorizontalOptions="Fill" VerticalOptions="Fill" WidthRequest="28" HeightRequest="28"/>
+                                        </StackLayout>
+                                        <Label Grid.Column="1" Text="Main" VerticalOptions="Center"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="4*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout Grid.Column="0" Margin="15,0,0,0" BackgroundColor="{Binding Settings.MainShade.Color}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+                                        <Label Grid.Column="1" Text="Main Shade" VerticalOptions="Center" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="4*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout Grid.Column="0" Margin="15,0,0,0" BackgroundColor="{Binding Settings.HighlightColor.Color}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+                                        <Label Grid.Column="1" Text="Highlight" VerticalOptions="Center" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="4*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout Grid.Column="0" Margin="15,0,0,0" BackgroundColor="{Binding Settings.TitleColor.Color}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+                                        <Label Grid.Column="1" Text="Title" VerticalOptions="Center"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="4*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout Grid.Column="0" Margin="15,0,0,0" BackgroundColor="{Binding Settings.TextColor.Color}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+                                        <Label Grid.Column="1" Text="Text" VerticalOptions="Center"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="Only Visible Sound Items:" VerticalOptions="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding LinkSmuggle}" VerticalOptions="Center"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="All Sound Items:" VerticalOptions="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding Smuggle}" VerticalOptions="Center"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                                   
+                                            </TableSection>
+                        <TableSection Title="Debug info">
+                            <TextCell Text="{Binding HasOAuth2Token}"  />
+                            <TextCell Text="{Binding HasTabs}"  />
+                            <TextCell Text="{Binding HasSoundsInTabs}"  />
+                            <TextCell Text="{Binding HasTokenFile}"  />
+                            <TextCell Text="{Binding HasTabsFile}"  />
+                        </TableSection>
+                        <TableSection Title="Debug buttons">
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" Text="Print token in console" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center" Margin="15,0,0,0" />
+                                        <Button x:Name="PrintTokenButton" Grid.Column="1" Text="Remove" Clicked="PrintTokenButton_Clicked"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </TableSection>
+                    </TableView.Root>
+                    </TableView>
+
+                    <TableView IsVisible="{Binding IsDebugOn}">
+                        <TableView.Root>
+                            <TableSection Title="Debug" >
+                            <SwitchCell On="{Binding IsDebugOn}" Text="Debug Mode"></SwitchCell>
+                            <SwitchCell x:Name="TopBarSwitch" On="{Binding settings.IsBarVisible}" Text="Show Andriod status bar"></SwitchCell>
+                            </TableSection>
+                        </TableView.Root>
+                    </TableView>
+
+-->
+<!--#endregion-->

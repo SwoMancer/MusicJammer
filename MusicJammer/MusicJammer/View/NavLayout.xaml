@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:data="clr-namespace:MusicJammer.Data"
+             x:Class="MusicJammer.View.NavLayout"
+             >
+
+    <data:CustomCollectionViewMenu x:Name="NavigateMenuCollectionView" 
+                                    ItemsSource="{Binding NavigateMenuViewModel.MenuItems}" 
+                                    HeightRequest="65" 
+                                    VerticalScrollBarVisibility="Never" 
+                                    HorizontalScrollBarVisibility="Never" 
+                                    BackgroundColor="{Binding Settings.MainShade.Color}"
+                                    >
+
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="5" />
+        </CollectionView.ItemsLayout>
+        
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+
+                <Grid x:Name="MenuItemGrid" Padding="0" Margin="0" Scale="1" HeightRequest="50" >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Row="0" Padding="0,5,0,0" Margin="0,5,0,0">
+                        <Image  Source="{Binding ActiveImage}"
+                                                Aspect="AspectFit" HeightRequest="20" />
+                    </StackLayout>
+
+
+                    <StackLayout Grid.Row="1" Margin="0,7,0,0">
+
+                        <Label Grid.Column="1"
+                                       VerticalOptions="Start"
+                                       Text="{Binding Name}" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="12" VerticalTextAlignment="Start" TextColor="{Binding ActiveColor.Color}" />
+
+                    </StackLayout>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer 
+                                        BindingContext="{Binding Source={x:Reference NavigateMenuCollectionView}, Path=BindingContext}" 
+                                        Command="{Binding NavigateMenuViewModel.SendToPageCommand}" 
+                                        CommandParameter="{Binding Source={x:Reference MenuItemGrid}, Path=BindingContext}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </data:CustomCollectionViewMenu>
+
+</StackLayout>

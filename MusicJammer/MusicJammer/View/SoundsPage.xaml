@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:view="clr-namespace:MusicJammer.View"
+             xmlns:data="clr-namespace:MusicJammer.Data"
+             xmlns:viewmodel="clr-namespace:MusicJammer.ViewModel"
+             x:Class="MusicJammer.View.SoundsPage"
+             NavigationPage.HasBackButton="False"
+             Title="My Sounds"
+             ControlTemplate="{StaticResource MainPageTemplate}"
+             >
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout>
+                <data:CustomCollectionViewMenu
+                    x:Name="HeadTabCollecionView"
+                    BackgroundColor="{Binding Settings.MainShade.Color}"
+                    ItemsSource="{Binding tabVM.TabItems}"
+                    HeightRequest="40"
+                    SelectionMode="Single"
+                    SelectionChanged="HeadTabCollecionView_SelectionChanged"
+                    
+                    
+
+                    >
+                    <data:CustomCollectionViewMenu.ItemTemplate>
+                        <DataTemplate>
+                            
+                        </DataTemplate>
+                    </data:CustomCollectionViewMenu.ItemTemplate>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid  
+                                  x:Name="TabNavGrid"
+                                  WidthRequest="{Binding NavSize}"
+                                  >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" /> 
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="12" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </data:CustomCollectionViewMenu>
+
+                <CarouselView 
+                    ItemsSource="{Binding tabVM.TabItems}"
+                    x:Name="BodyCarouselView"
+                    CurrentItemChanged="BodyCarouselView_CurrentItemChanged"
+                    >
+
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Grid HeightRequest="40">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="Sound name:"  VerticalOptions="Center" FontSize="12"/>
+                                    <Label Grid.Column="1" Text="Remove button:" VerticalOptions="Center" FontSize="12"/>
+                                    <Label Grid.Column="2" Text="Toggel visibility:" VerticalOptions="Center" FontSize="12"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <ListView ItemsSource="{Binding SoundVM.SoundItems}" SelectionMode="None" x:Name="SoundListView">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid x:Name="SoundGrid">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="1*" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="5*" />
+                                                            <ColumnDefinition Width="3*" />
+                                                            <ColumnDefinition Width="3*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Label Grid.Column="0" Text="{Binding Name}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="12" />
+
+                                                        
+                                                        <Button Grid.Column="1" Text="Remove" 
+                                                                BindingContext="{Binding Source={x:Reference SoundListView}, Path=BindingContext}" 
+                                                                Command="{Binding SoundVM.RemoveCommand}" 
+                                                                CommandParameter="{Binding Source={x:Reference SoundGrid}, Path=BindingContext}"
+                                                                />
+
+                                                        <Switch Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" 
+                                                                IsToggled="{Binding IsVisible, Mode=TwoWay}"/>
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Fill" Orientation="Horizontal" VerticalOptions="End" Padding="0" >
+                <view:NavLayout></view:NavLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

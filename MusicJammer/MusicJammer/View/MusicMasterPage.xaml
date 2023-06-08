@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:view="clr-namespace:MusicJammer.View" xmlns:data="clr-namespace:MusicJammer.Data"
+             x:Class="MusicJammer.View.MusicMasterPage"
+             NavigationPage.HasBackButton="False"
+             Title="Crafte Music"
+             ControlTemplate="{StaticResource MainPageTemplate}"
+             >
+
+    <StackLayout>
+
+        <StackLayout>
+            <data:CustomCollectionViewMenu
+                    x:Name="HeadTabCollecionView"
+                    BackgroundColor="{Binding Settings.MainShade.Color}"
+                    ItemsSource="{Binding tabVM.TabItems}"
+                    HeightRequest="40"
+                    SelectionMode="Single"
+                    SelectionChanged="HeadTabCollecionView_SelectionChanged"
+                    
+
+                    >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="TabNavGrid"
+                              WidthRequest="{Binding NavSize}"
+                              >
+                            <!--#region Grid Definitions-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <!--#endregion-->
+                            <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="12" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </data:CustomCollectionViewMenu>
+
+            <CarouselView 
+                    ItemsSource="{Binding tabVM.TabItems}"
+                    x:Name="BodyCarouselView"
+                    CurrentItemChanged="BodyCarouselView_CurrentItemChanged"
+                    >
+
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout x:Name="TabCarouselView">
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Play All sounds" 
+                                        BindingContext="{Binding Source={x:Reference TabCarouselView}, Path=BindingContext}" 
+                                        Command="{Binding SoundVM.PlayAllCommand}" 
+                                        CommandParameter="{Binding Source={x:Reference TabCarouselView}, Path=BindingContext}"
+                                        />
+                                <Button Text="Pause All sounds" 
+                                        BindingContext="{Binding Source={x:Reference TabCarouselView}, Path=BindingContext}" 
+                                        Command="{Binding SoundVM.PauseAllCommand}" 
+                                        CommandParameter="{Binding Source={x:Reference TabCarouselView}, Path=BindingContext}"
+                                        />
+                            </StackLayout>
+                            <Grid>
+                                <!--#region Grid Definitions-->
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <!--#endregion-->
+
+
+                                <ListView ItemsSource="{Binding SoundVM.SoundMasterItems}" SelectionMode="None" x:Name="SoundListView"  HasUnevenRows="True" SeparatorVisibility="Default">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout x:Name="SoundGrid"  HorizontalOptions="Fill" Orientation="Vertical">
+                                                    <!--
+                                                    <StackLayout BackgroundColor="#000000" HeightRequest="1"></StackLayout>
+                                                    -->
+
+                                                    <!-- title & info-->
+
+                                                    <Grid Grid.Row="0"  VerticalOptions="Start">
+                                                        <!--#region Grid Definitions-->
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="1*" />
+                                                            <RowDefinition Height="1*" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="1*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <!--#endregion-->
+                                                        
+                                                        <Label Grid.Row="0" Text="{Binding Item.EasyReadName}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Subtitle"/>
+
+
+                                                        <Label Grid.Row="1" Text="{Binding Item.Type}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="12" />
+
+                                                    </Grid>
+
+                                                    <!-- Play, Volum & Chaos -->
+                                                    <Grid Grid.Row="1" VerticalOptions="Start" >
+                                                        <!--#region Grid Definitions-->
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="1*" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="1*" />
+                                                            <ColumnDefinition Width="3*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <!--#endregion-->
+                                                        
+                                                        <!-- Play -->
+                                                        <Grid Grid.Column="0" VerticalOptions="Start">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="1*" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="1*" />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Button Grid.Column="0" Text="Play" TextTransform="None"
+                                                                BindingContext="{Binding Source={x:Reference SoundListView}, Path=BindingContext}" 
+                                                                Command="{Binding SoundVM.PlayCommand}" 
+                                                                CommandParameter="{Binding Source={x:Reference SoundGrid}, Path=BindingContext}" 
+                                                                HorizontalOptions="Center" VerticalOptions="Center"
+                                                                />
+
+                                                        </Grid>
+
+                                                        <!-- Volum & Chaos -->
+                                                        <Grid Grid.Column="1" VerticalOptions="Start" >
+                                                            <!--#region Grid Definitions-->
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="1*" />
+                                                                <RowDefinition Height="1*" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="1*" />
+                                                                <ColumnDefinition Width="6*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <!--#endregion-->
+
+                                                            <Label  Grid.Row="0" Grid.Column="0" Text="{Binding Controller.VolumeProcent, StringFormat='Sound: [{0:F0}%]'}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="12"  />
+                                                            <Slider Grid.Row="0" Grid.Column="1" Maximum="100" Minimum="0" 
+                                                                    Value="{Binding Controller.VolumeProcent}"
+                                                                    />
+                                                            <Label  Grid.Row="1" Grid.Column="0" Text="{Binding Controller.Sound.WaitPeriod, StringFormat='Chaos: [{0:F0}S]'}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="12" />
+                                                            <Slider Grid.Row="1" Grid.Column="1" Maximum="120" Minimum="0"
+                                                                    Value="{Binding Controller.Sound.WaitPeriod}"
+                                                                    />
+
+                                                        </Grid>
+
+                                                    </Grid>
+
+                                                    <!-- CheckBox town!, divider -->
+                                                    <Grid Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Start" >
+                                                        <!--#region Grid Definitions-->
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="1*" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="1*" />
+                                                            <ColumnDefinition Width="1*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <!--#endregion-->
+
+                                                        <!-- left -->
+                                                        <Grid Grid.Column="0" VerticalOptions="Start"   >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="1*" />
+                                                                <RowDefinition Height="1*" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2*" />
+                                                                <ColumnDefinition Width="1*" />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Label    Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" Text="Play only one time:" FontSize="12"/>
+                                                            <CheckBox Grid.Row="0" Grid.Column="1" HorizontalOptions="End" IsChecked="{Binding Controller.Sound.PlayStateOn, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}" />
+                                                            <Label    Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" Text="Play on repeat:" FontSize="12"/>
+                                                            <CheckBox Grid.Row="1" Grid.Column="1" HorizontalOptions="End" IsChecked="{Binding Controller.Sound.PlayStateOff, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}" />
+                                                            
+
+                                                        </Grid>
+
+                                                        <!-- Right-->
+                                                        <Grid Grid.Column="1" VerticalOptions="Start"  >
+                                                            <!--#region Grid Definitions-->
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="1*" />
+                                                                <RowDefinition Height="1*" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="1*" />
+                                                                <ColumnDefinition Width="1*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <!--#endregion-->
+
+                                                            <Label    Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" Text="Active:" FontSize="12"/>
+                                                            <CheckBox Grid.Row="0" Grid.Column="1" HorizontalOptions="End" IsChecked="{Binding Controller.Sound.ActiveStateOn}" />
+                                                            <Label    Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" Text="Do not use:" FontSize="12"/>
+                                                            <CheckBox Grid.Row="1" Grid.Column="1" HorizontalOptions="End" IsChecked="{Binding Controller.Sound.ActiveStateOff}" />
+
+                                                            <!--
+                                                            <Button Grid.Row="2" Grid.Column="0" Text="X" HorizontalOptions="Start" VerticalOptions="Start" />
+                                                            <Button Grid.Row="2" Grid.Column="1" Text="[]" HorizontalOptions="Start" VerticalOptions="Start" />
+                                                            -->
+
+                                                        </Grid>
+
+
+                                                    </Grid>
+
+                                                    
+                                                    <!--
+                                                    <StackLayout BackgroundColor="#40000000" HeightRequest="0.5"></StackLayout>
+                                                    <StackLayout BackgroundColor="#000000" HeightRequest="5" WidthRequest="5" HorizontalOptions="Center" Margin="0,10"></StackLayout>
+                                                    -->
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+        </StackLayout>
+
+        <StackLayout HorizontalOptions="Fill" Orientation="Horizontal" VerticalOptions="End" Padding="0" >
+            <view:NavLayout></view:NavLayout>
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>

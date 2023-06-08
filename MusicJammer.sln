@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicJammer.Android", "MusicJammer\MusicJammer.Android\MusicJammer.Android.csproj", "{3117B8A3-672C-4627-A1A5-DF84D5F28488}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicJammer", "MusicJammer\MusicJammer\MusicJammer.csproj", "{3A44AFAB-2C7B-41FE-BBB5-7AA62D9F9F5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3117B8A3-672C-4627-A1A5-DF84D5F28488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3117B8A3-672C-4627-A1A5-DF84D5F28488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3117B8A3-672C-4627-A1A5-DF84D5F28488}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3117B8A3-672C-4627-A1A5-DF84D5F28488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3117B8A3-672C-4627-A1A5-DF84D5F28488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3117B8A3-672C-4627-A1A5-DF84D5F28488}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3A44AFAB-2C7B-41FE-BBB5-7AA62D9F9F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A44AFAB-2C7B-41FE-BBB5-7AA62D9F9F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A44AFAB-2C7B-41FE-BBB5-7AA62D9F9F5D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3A44AFAB-2C7B-41FE-BBB5-7AA62D9F9F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A44AFAB-2C7B-41FE-BBB5-7AA62D9F9F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A44AFAB-2C7B-41FE-BBB5-7AA62D9F9F5D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E57010B-301D-4FFC-839A-9F241798D17D}
+	EndGlobalSection
+EndGlobal
